@@ -44,13 +44,29 @@
                             BorderThickness="1"
                             Controls:ButtonHelper.PreserveTextCase="True"/>
                 </StackPanel>
-                
+
+            </Controls:Flyout>
+            <Controls:Flyout 
+                x:Name = "InfoDialog"
+                Position = "Bottom"
+                AreAnimationsEnabled = "True"
+                CloseButtonVisibility="Hidden"
+                TitleVisibility="Hidden"
+                IsModal="False"
+                Width="350"
+                Height="50"
+                IsAutoCloseEnabled="True"
+                AutoCloseInterval="3000"
+                >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="Copied to clipboard"/>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
-    
-    
-    <Window.Resources>
+
+   
+
+
+            <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
