@@ -24,15 +24,16 @@ else {
 
 Write-Host $Path
 
+#Initialize some variables
 $tempPath = $env:TEMP 
 $JsonFileName = "\templistADSK.json"
 $MainformIcon = $Path + "\res\mum.png"
+$global:ReleaseSelection = "2020"
 
 #===========================================================================
 #Product Key Hash Table
 #===========================================================================
 $AutodesProductsHashtable = Get-Content -Path ($Path + "\res\settings\AutodeskProducts.txt") | ConvertFrom-StringData
-#endregion
 
 ##############################################################
 #                Functions                                   #
@@ -49,8 +50,7 @@ Function ADSKEXE {
     $WPFPrintList.IsEnabled = $True
     $WPFRunButton.IsEnabled = $True
     $WPFGenerate.IsEnabled = $True
-
-
+    $WPFReleaseSelection.IsEnabled = $True
   }
   else {
     Write-Output 'Exe NotFound'
@@ -58,6 +58,19 @@ Function ADSKEXE {
     $WPFimage.Source = $Path + "\res\cancel_48px.png"
   }
 }
+
+function CheckDesktopService {
+  param($ServiceName)
+  $arrService = Get-Service -Name $ServiceName
+  if ($arrService.Status -ne "Running") {
+    $global:ServiceState = $False
+  }
+  if ($arrService.Status -eq "running") { 
+    Write-Host "$ServiceName service is already started"
+    $global:ServiceState = $true
+  }
+}
+
 
 Function Generate {
   Write-Host "Generate Clicked"
@@ -159,10 +172,22 @@ function SetTheme($Themestr) {
     [MahApps.Metro.ThemeManager]::ChangeAppStyle($Form, [MahApps.Metro.ThemeManager]::GetAccent("Cobalt"), $Theme.Item1);
   }
 }
+
+function Search {
+
+  #Reset selection / otherwise you could have something selectet that is no longer present
+  $WPFlistBox.SelectedIndex = -1
+  $global:Product = ""
+  $SearchValue = $WPFSearchbox.Text
+  Write-Host $SearchValue
+ 
+  $WPFlistBox.ItemsSource = @(( $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" -and $_ -like "*$global:ReleaseSelection" }))
+  
+}
 #region XAML Reader
 # where is the XAML file?
-$xamlFile = $path + "\res\MainWindow.xaml"
-
+#$xamlFile = $path + "\res\MainWindow.xaml"
+$xamlFile = "H:\Dropbox (Data)\TWIVisualStudioProcets\Powershell\ADSKLicensing\ADSKLicensingM\ADSKLicensingM\MainWindow.xaml"
 $inputXML = Get-Content $xamlFile -Raw
 $inputXML = $inputXML -replace 'mc:Ignorable="d"', '' -replace "x:N", 'N' -replace '^<Win.*', '<Window'
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
@@ -213,6 +238,7 @@ $WPFSearchbox.IsEnabled = $False
 $WPFPrintList.IsEnabled = $False
 $WPFRunButton.IsEnabled = $False
 $WPFGenerate.IsEnabled = $False
+$WPFReleaseSelection.IsEnabled = $False
 
 #Add Product by Hashtable
 $WPFlistBox.ItemsSource = $AutodesProductsHashtable.Keys
@@ -225,11 +251,34 @@ foreach ( $item in $WPFlistBox) {
 #Load Config
 Import-Config
 
+#Check Desktop Licensing Service Status
+CheckDesktopService "AdskLicensingService"
+#Set State of ToggleSwitch in Flyout menü
+If ($global:ServiceState) {
+  $WPFDesktopService.IsChecked = $true
+}
+else {
+  $WPFDesktopService.IsChecked = $false
+  #$WPFServiceDialog.IsOpen = $true
+}
+
 #===========================================================================
 #Events Bindings
 #===========================================================================
 
 #region Events
+
+
+#Selection Event Change Release Selection
+$WPFReleaseSelection.Add_SelectionChanged(
+  { 
+    $global:ReleaseSelection = $WPFReleaseSelection.SelectedItem.Content
+    Write-Host $global:ReleaseSelection
+
+    #Call Search Function
+    Search
+  }
+)
 
 #Selection Event Change Product
 $WPFlistBox.Add_SelectionChanged(
@@ -306,6 +355,18 @@ $WPFServerType.Add_SelectionChanged(
 $WPFCheckPath.Add_Click( {
     Write-Host "Check Path Clicked"
     ADSKEXE
+
+    #Check Desktop Licensing Service Status
+    CheckDesktopService "AdskLicensingService"
+
+    #Check Desktop Licensing Service Status
+    If ($global:ServiceState) {
+      $WPFDesktopService.IsChecked = $true
+    }
+    else {
+      $WPFDesktopService.IsChecked = $false
+      $WPFServiceDialog.IsOpen = $true
+    }
   }) 
 
 #Adding code to Print List Button
@@ -322,13 +383,17 @@ $WPFGenerate.Add_Click( {
     $WPFInfoDialog.IsOpen = $true
   }) 
 
+
+
 $WPFSearchbox.Add_KeyDown( {
-    #Reset selection / otherwise you could have something selectet that is no longer present
-    $WPFlistBox.SelectedIndex = -1
-    $global:Product = ""
-    $SearchValue = $WPFSearchbox.Text
-    Write-Host $SearchValue
-    $WPFlistBox.ItemsSource = @(( $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" }))
+    #Call Search
+    if ($_.Key -eq 'Return') {
+      #Reset selection / otherwise you could have something selectet that is no longer present
+      $WPFlistBox.SelectedIndex = -1
+      $global:Product = ""
+      $SearchValue = $WPFSearchbox.Text
+      $WPFlistBox.ItemsSource = @(( $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" -and $_ -like "*$global:ReleaseSelection" }))
+    }
   })
 
 $WPFRunButton.Add_Click( {
@@ -378,8 +443,6 @@ $WPFRunButton.Add_Click( {
         }
       }
     }
-
-
   })
 
 $WPFThemeSwitch.Add_Click( {
@@ -393,6 +456,30 @@ $WPFThemeSwitch.Add_Click( {
       Update-Config
     }
   })
+
+$WPFDesktopService.Add_Click( {
+    if ($WPFDesktopService.IsChecked -eq $true) {
+      Start-Service -Name "AdskLicensingService"
+    }
+    else {
+      Stop-Service -Name "AdskLicensingService"
+    }
+  })
+
+$WPFRefreshService.Add_Click(
+  {
+    #Check Desktop Licensing Service Status
+    CheckDesktopService "AdskLicensingService"
+    #Set State of ToggleSwitch in Flyout menü
+    If ($global:ServiceState) {
+      $WPFDesktopService.IsChecked = $true
+    }
+    else {
+      $WPFDesktopService.IsChecked = $false
+      #$WPFServiceDialog.IsOpen = $true
+    }
+  }
+)
 
 $WPFSettingsButton.Add_Click( {
     $WPFFlyOutContent.IsOpen = $true 
@@ -410,6 +497,22 @@ $WPFOpenLoginStatePath.Add_Click( {
     }
   })
 
+$WPFOpenAdskLicensingServicePath.Add_Click( {
+    try {
+      $OpenPath = "C:\ProgramData\Autodesk\AdskLicensingService"
+      Write-Host $OpenPath
+      Invoke-Item $OpenPath
+    }
+    catch {
+      $ok = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::Affirmative
+      [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Open Path", "Could not find Path!", $ok)
+    }
+  })
+
+
+
+
+
 $WPFHelpButton.Add_Click( {
     $Helpfile = $Path + "\res\settings\ADSKLicensingModifierHelpFile.chm"
     Invoke-Item $Helpfile
@@ -426,9 +529,3 @@ $WPFMUMLogo.Source = $Path + "\res\MUMLogo.png"
 $WPFStatusBox.Text = "Not Ready / Check Path"
 
 $Form.ShowDialog() | out-null
-
-
-
-
-
- 
