@@ -64,7 +64,7 @@ You can check the path for yourself.
 
 # Select Product
 
-On the left you need to select a product that you want to change in any way. This list is based on the official product key list from autodesk. Use the search function to find your product.
+On the left you need to select a product that you want to change in any way. This list is based on the official product key list from autodesk. Use the search function to find your product. Press "Enter" after typing.
 
 ![](/docs/adskm_selectproduct.gif)
 
