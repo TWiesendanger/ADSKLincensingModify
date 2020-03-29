@@ -4,7 +4,7 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"		
     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
         
-    Title="ADSK Licensing Modifier" 
+    Title="ADSK Licensing Modify" 
     TitleCaps="False"
     Height="580" 
     Width="990"
