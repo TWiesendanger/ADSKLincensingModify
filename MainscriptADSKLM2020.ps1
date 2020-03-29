@@ -71,7 +71,6 @@ function CheckDesktopService {
   }
 }
 
-
 Function Generate {
   Write-Host "Generate Clicked"
         
