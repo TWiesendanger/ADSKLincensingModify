@@ -1,4 +1,4 @@
-# ADSKLincensingModifiy
+# ADSKLincensingModify
 
 Modifies License Information for Autodesk Products 2020+
 
@@ -13,7 +13,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 Table of Contents
 
-- [ADSKLincensingModifiy](#adsklincensingmodifiy)
+- [ADSKLincensingModify](#adsklincensingmodify)
 - [Function Demo](#function-demo)
 - [Installation](#installation)
 - [Start](#start)
