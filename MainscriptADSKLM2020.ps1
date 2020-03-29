@@ -185,8 +185,8 @@ function Search {
 }
 #region XAML Reader
 # where is the XAML file?
-#$xamlFile = $path + "\res\MainWindow.xaml"
-$xamlFile = "H:\Dropbox (Data)\TWIVisualStudioProcets\Powershell\ADSKLicensing\ADSKLicensingM\ADSKLicensingM\MainWindow.xaml"
+$xamlFile = $path + "\res\MainWindow.xaml"
+#$xamlFile = "H:\Dropbox (Data)\TWIVisualStudioProcets\Powershell\ADSKLicensing\ADSKLicensingM\ADSKLicensingM\MainWindow.xaml"
 $inputXML = Get-Content $xamlFile -Raw
 $inputXML = $inputXML -replace 'mc:Ignorable="d"', '' -replace "x:N", 'N' -replace '^<Win.*', '<Window'
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
