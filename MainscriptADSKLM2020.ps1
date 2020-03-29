@@ -513,8 +513,9 @@ $WPFOpenAdskLicensingServicePath.Add_Click( {
 
 
 $WPFHelpButton.Add_Click( {
-    $Helpfile = $Path + "\res\settings\ADSKLicensingModifierHelpFile.chm"
-    Invoke-Item $Helpfile
+    #$Helpfile = $Path + "\res\settings\ADSKLicensingModifierHelpFile.chm"
+    start "https://github.com/TWiesendanger/ADSKLincensingModifiy"
+    #Invoke-Item $Helpfile
   })
 #endregion Events
 

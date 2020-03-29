@@ -34,7 +34,7 @@ Table of Contents
     - [Service](#service)
 - [Errors / Problems](#errors--problems)
   - [Nothing happens](#nothing-happens)
-  - [invalid character \x00](#invalid-character-x00)
+  - [Invalid character \x00](#invalid-character-x00)
   - [AdskLicensingService is not running](#adsklicensingservice-is-not-running)
 - [License](#license)
 
@@ -112,7 +112,7 @@ If you click run it will run the command after asking you one last time. If you 
 
 # Help
 
-If you want to read the helpfile from the programm itself, press this button.
+Opens this website if you click on it.
 
 ![](/docs/adskm_helpfile.png)
 
