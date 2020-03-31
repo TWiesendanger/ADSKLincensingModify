@@ -112,6 +112,10 @@
     </Window.Resources>
 
     <Grid Margin="0, 40,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="445*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
         <Button x:Name="CheckPath" Content="Check Path" HorizontalAlignment="Left" Margin="20,-34,0,0" VerticalAlignment="Top" Width="121" Height="45" FontSize="18"
                 Controls:ButtonHelper.PreserveTextCase="True"
                 />
@@ -147,7 +151,7 @@
                  VerticalAlignment="Top" 
                  Width="223" 
                  BorderBrush="{DynamicResource AccentColorBrush}" 
-                 BorderThickness="1">
+                 BorderThickness="1" Grid.ColumnSpan="2">
             <ListBoxItem Content="Single server" FontSize="14"/>
             <ListBoxItem Content="Redundant servers" FontSize="14"/>
             <ListBoxItem Content="Distributed servers" FontSize="14"/>
@@ -155,17 +159,17 @@
         </ListBox>
         <Button x:Name="Generate" Content="Generate / Copy" HorizontalAlignment="Left" Margin="703,457,0,0" VerticalAlignment="Top" Width="125" Height="35" FontSize="14"
                 Controls:ButtonHelper.PreserveTextCase="True"/>
-        <TextBox x:Name="ServerName" HorizontalAlignment="Left" Height="23" Margin="730,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"/>
+        <TextBox x:Name="ServerName" HorizontalAlignment="Left" Height="23" Margin="730,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2"/>
         <TextBox x:Name="Searchbox" HorizontalAlignment="Left" Height="34" Margin="20,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Controls:TextBoxHelper.ClearTextButton="True" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Delay=5000}"/>
         <Label x:Name="Search" Content="Search" HorizontalAlignment="Left" Margin="17,26,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="ProductLabel" Content="Product" HorizontalAlignment="Left" Margin="17,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="LicenseLabel" Content="License" HorizontalAlignment="Left" Margin="457,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="ServertypeLabel" Content="Servertype" HorizontalAlignment="Left" Margin="729,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-        <Label x:Name="ServerNameLabel" Content="Server Name (@127.0.0.1,@192.168.1.1)" HorizontalAlignment="Left" Margin="729,340,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="10"/>
-        <TextBox x:Name="ResultBox" HorizontalAlignment="Left" Height="42" Margin="20,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="933" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"/>
+        <Label x:Name="ServerNameLabel" Content="Server Name (@127.0.0.1,@192.168.1.1)" HorizontalAlignment="Left" Margin="729,340,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="10" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ResultBox" HorizontalAlignment="Left" Height="42" Margin="20,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="933" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2"/>
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="835,457,0,0" VerticalAlignment="Top" Width="118" Height="35" FontSize="14"
-                Controls:ButtonHelper.PreserveTextCase="True"/>
-        <Image x:Name="MUMLogo" Margin="730,-34,31,502" Source="MUMLogo.jpg" Stretch="Fill"/>
+                Controls:ButtonHelper.PreserveTextCase="True" Grid.ColumnSpan="2"/>
+        <Image x:Name="MUMLogo" Margin="730,-34,31,502" Source="MUMLogo.jpg" Stretch="Fill" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="ReleaseSelection" HorizontalAlignment="Left" Margin="342,22,0,0" VerticalAlignment="Top" Width="72" SelectedIndex="0" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}">
             <ComboBoxItem Content="2020"/>
             <ComboBoxItem Content="2021"/>
