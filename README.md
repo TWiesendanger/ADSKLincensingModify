@@ -17,6 +17,7 @@ Table of Contents
 - [Function Demo](#function-demo)
 - [Installation](#installation)
 - [Start](#start)
+- [Print List](#print-list)
 - [Select Product](#select-product)
 - [Select License](#select-license)
   - [Network Licensing](#network-licensing)
@@ -61,6 +62,28 @@ You can check the path for yourself.
 ![](/docs/adskm_checkpath.gif)
 
 > Note: This exe isn't delivered by this tool. You get it by installing any Autodesk 2020 product. It also get's updated from time to time, which makes it difficult to ship.
+
+# Print List
+
+This creates a json file an tries to open it. If it fails make sure you have a tool to open such files. It show alot of infos about every licenses product on the machine this command was used.
+
+Make sure to check the Autodesk Knowledge article:
+[Autodesk Knowledge](https://knowledge.autodesk.com/support/autocad/troubleshooting/caas/sfdcarticles/sfdcarticles/Use-Installer-Helper.html)
+
+| value |      license method      |
+| ----- | :----------------------: |
+| 0     | Unknown licensing method |
+| 1     |    Network licensing     |
+| 2     |   Standalone licensing   |
+| 3     |          (MSSA)          |
+| 4     |      User Licensing      |
+
+| value |     server type     |
+| ----- | :-----------------: |
+| 0     | Unknown server type |
+| 1     |    Single server    |
+| 2     |  Redundant servers  |
+| 3     | Distributed servers |
 
 # Select Product
 
