@@ -398,7 +398,7 @@ $WPFSearchbox.Add_KeyDown( {
 $WPFRunButton.Add_Click( {
 
     if ($WPFlistBox.SelectedItem.Count -lt 1) {
-      $ok = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::Affirmative
+      $ok = [MahApps.Metro.Controls.Dialogs.]::Affirmative
       [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run", "No Product is selected! Select a Product from list!", $ok)
     }
     else {
@@ -508,16 +508,16 @@ $WPFOpenAdskLicensingServicePath.Add_Click( {
     }
   })
 
-
-
-
-
 $WPFHelpButton.Add_Click( {
     #$Helpfile = $Path + "\res\settings\ADSKLicensingModifierHelpFile.chm"
     start "https://github.com/TWiesendanger/ADSKLincensingModify"
     #Invoke-Item $Helpfile
   })
 #endregion Events
+
+$WPFMUMLogo.Add_MouseLeftButtonUp( {
+    start "https://mum.ch"
+  })
 
 #===========================================================================
 # Shows the form
