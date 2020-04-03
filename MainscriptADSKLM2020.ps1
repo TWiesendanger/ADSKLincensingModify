@@ -29,6 +29,7 @@ $tempPath = $env:TEMP
 $JsonFileName = "\templistADSK.json"
 $MainformIcon = $Path + "\res\mum.png"
 $global:ReleaseSelection = "2020"
+$global:productFeaturecode = "2020.0.0.F"
 
 #===========================================================================
 #Product Key Hash Table
