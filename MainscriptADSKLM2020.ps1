@@ -76,20 +76,20 @@ Function Generate {
         
   if ($WPFLicense.SelectedItem.Content -eq "Network licensing") {
     if ($Servertype -eq "RESET") {
-      $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver 2020.0.0.F " + "--lic_method " + '""' + " --lic_server_type " + '""' + " --lic_servers " + '""'
+      $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver " + $global:productFeaturecode + " --lic_method " + '""' + " --lic_server_type " + '""' + " --lic_servers " + '""'
       Set-Clipboard -Value $CMDString
       $WPFResultBox.Text = $CMDString
       Write-Host $CMDString
     }
     else {
-      $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver 2020.0.0.F " + "--lic_method " + $License + " --lic_server_type " + $Servertype + " --lic_servers " + $WPFServerName.Text
+      $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver " + $global:productFeaturecode + " --lic_method " + $License + " --lic_server_type " + $Servertype + " --lic_servers " + $WPFServerName.Text
       Set-Clipboard -Value $CMDString
       $WPFResultBox.Text = $CMDString
       Write-Host $CMDString
     }
   }
   else {
-    $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver 2020.0.0.F " + "--lic_method " + $License
+    $global:CMDString = '"' + $ExePath + '"' + " change " + "--prod_key " + $Product + " --prod_ver " + $global:productFeaturecode + " --lic_method " + $License
     Set-Clipboard -Value $CMDString
     $WPFResultBox.Text = $CMDString
     Write-Host $CMDString
@@ -272,7 +272,14 @@ else {
 $WPFReleaseSelection.Add_SelectionChanged(
   { 
     $global:ReleaseSelection = $WPFReleaseSelection.SelectedItem.Content
+    if ($global:ReleaseSelection -eq "2020") {
+      $global:productFeaturecode = "2020.0.0.F"
+    }
+    else {
+      $global:productFeaturecode = "2021.0.0.F"
+    }
     Write-Host $global:ReleaseSelection
+    Write-Host $global:productFeaturecode
 
     #Call Search Function
     Search
