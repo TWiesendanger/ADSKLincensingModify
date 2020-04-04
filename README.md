@@ -125,6 +125,8 @@ If you want to copy the generated command click this button. This allows you to 
 
 If you want to you can also edit the command.
 
+> Warning: There are some commands that wont work if you just type them in cmd. For example if you want to reset something it is important that AdSSO.exe is not running. If you use the run command it automatically detects if this process is running and if yes, it will kill it.
+
 ![](/docs/adskm_command.png)
 
 # Run
