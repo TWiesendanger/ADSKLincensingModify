@@ -406,7 +406,7 @@ $WPFSearchbox.Add_KeyDown( {
 $WPFRunButton.Add_Click( {
 
     if ($WPFlistBox.SelectedItem.Count -lt 1) {
-      $ok = [MahApps.Metro.Controls.Dialogs.]::Affirmative
+      $ok = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::Affirmative
       [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run", "No Product is selected! Select a Product from list!", $ok)
     }
     else {
@@ -415,8 +415,18 @@ $WPFRunButton.Add_Click( {
         $okAndCancel = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::AffirmativeAndNegative
         # show ok/cancel message
         $result = [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run CMD", "Do you realy want to run this command?", $okAndCancel)
-   
+
         If ($result -eq "Affirmative") { 
+
+          #Stop ASSO.exe
+          $AdSSO = Get-Process -Name "AdSSO" -ErrorAction SilentlyContinue
+          if ($AdSSO) {
+            Stop-Process -InputObject $AdSSO
+          }
+          else {
+            Write-Host "Could not stop AdSSO.exe!"
+          }
+          
           $CMDPath = $tempPath + "\ADSKMCommandtemp.cmd"
           Set-Content -Path $CMDPath -Value $WPFResultBox.Text -Encoding ASCII
           Invoke-Item $CMDPath
@@ -438,6 +448,16 @@ $WPFRunButton.Add_Click( {
         $result = [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run CMD", "Do you realy want to run this command?", $okAndCancel)
   
         If ($result -eq "Affirmative") { 
+
+          #Stop ASSO.exe
+          $AdSSO = Get-Process -Name "AdSSO" -ErrorAction SilentlyContinue
+          if ($AdSSO) {
+            Stop-Process -InputObject $AdSSO
+          }
+          else {
+            Write-Host "Could not stop AdSSO.exe!"
+          }
+                    
           $CMDPath = $tempPath + "\ADSKMCommandtemp.cmd"
           Set-Content -Path $CMDPath -Value $WPFResultBox.Text -Encoding ASCII
           Invoke-Item $CMDPath
