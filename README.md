@@ -11,9 +11,17 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 > Note: If you want to check out the manual way by autodesk, feel free to use this link: [Autodesk Knowledge](https://knowledge.autodesk.com/search-result/caas/sfdcarticles/sfdcarticles/How-to-change-or-reset-licensing-on-your-Autodesk-software.html)
 
-Table of Contents
+# Tool does not start!
+
+Have a look here.
+
+[Tool doesn't start](#tool-doesnt-start)
+
+# Table of Contents
 
 - [ADSKLincensingModify](#adsklincensingmodify)
+- [Tool does not start!](#tool-does-not-start)
+- [Table of Contents](#table-of-contents)
 - [Function Demo](#function-demo)
 - [Installation](#installation)
 - [Start](#start)
@@ -37,6 +45,7 @@ Table of Contents
   - [Nothing happens](#nothing-happens)
   - [Invalid character \x00](#invalid-character-x00)
   - [AdskLicensingService is not running](#adsklicensingservice-is-not-running)
+- [Tool doesn't start](#tool-doesnt-start)
 - [License](#license)
 
 # Function Demo
@@ -180,7 +189,7 @@ Use Generate / Copy and paste the command into a cmd shell. This way you can see
 If this error shows, then there is a problem with the licensing system on this machine. You can try to fix it by renaming AdskLicensingService.data.
 
 Click on Settings and choose "Open AdskLicensing Path" it opens windows explorer with the right path for you.
-After this make sure that the AdskLicensingService is started. You can do this from the flyout if you want to. 
+After this make sure that the AdskLicensingService is started. You can do this from the flyout if you want to.
 
 ## AdskLicensingService is not running
 
@@ -188,8 +197,18 @@ This service is needed to run the Autodesk Licensing system. If it is not runnin
 
 ![](/docs/adskm_service.png)
 
+# Tool doesn't start
+
+At the moment it is not signed so you probably get a windows defender message which you need to allow.
+
+![](/docs/adskm_smarscreen.png)
+
+Also make sure that all dll files are not blocked. Open res\assembly folder and check by rightclicking on dll file.
+
+![](/docs/adskm_blocked.jpg)
 
 # License
+
 MIT License
 
 Copyright (c) 2020 Tobias Wiesendanger
