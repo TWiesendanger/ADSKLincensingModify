@@ -15,8 +15,6 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 Have a look here.
 
-[Tool doesn't start](#tool-doesnt-start)
-
 # Table of Contents
 
 - [ADSKLincensingModify](#adsklincensingmodify)
