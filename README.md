@@ -13,7 +13,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 # Tool does not start!
 
-Have a look here.
+[Have a look here](https://github.com/TWiesendanger/ADSKLincensingModify#tool-doesnt-start)
 
 # Table of Contents
 
