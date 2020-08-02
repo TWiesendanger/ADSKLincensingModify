@@ -22,8 +22,6 @@ else {
   $Path = Split-Path -Parent -Path ([Environment]::GetCommandLineArgs()[0])
 }
 
-Write-Host $Path
-
 #Initialize some variables
 $tempPath = $env:TEMP 
 $JsonFileName = "\templistADSK.json"
@@ -31,15 +29,33 @@ $MainformIcon = $Path + "\res\mum.png"
 $global:ReleaseSelection = "2020"
 $global:productFeaturecode = "2020.0.0.F"
 
+#Create Timer for Product Search in the second tab (search is more responsive like that)
+$TimerSearchKeys = New-Object System.Windows.Forms.Timer
+$TimerSearchKeys.Interval = 350
+#Create Timer for ModifyLicenseProduct
+$TimerModifyLicenseProduct = New-Object System.Windows.Forms.Timer
+$TimerModifyLicenseProduct.Interval = 350
+
 #===========================================================================
 #Product Key Hash Table
 #===========================================================================
 $AutodesProductsHashtable = Get-Content -Path ($Path + "\res\settings\AutodeskProducts.txt") | ConvertFrom-StringData
 
+#Products for Search Function
+$ProductKeysHashtable2015 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2015.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2015 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2015.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2016 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2016.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2017 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2017.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2018 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2018.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2019 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2019.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2020 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2020.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2021 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2021.txt") | ConvertFrom-StringData
+
 ##############################################################
 #                Functions                                   #
 ##############################################################
-Function ADSKEXE {
+
+function ADSKEXE {
   if (Test-Path -Path "C:\Program Files (x86)\Common Files\Autodesk Shared\AdskLicensing\Current\helper\AdskLicensingInstHelper.exe") {
     $global:ExePath = "C:\Program Files (x86)\Common Files\Autodesk Shared\AdskLicensing\Current\helper\AdskLicensingInstHelper.exe"
     Write-Host 'Exe Found'
@@ -175,8 +191,8 @@ function SetTheme($Themestr) {
 
 function Search {
 
-  #Reset selection / otherwise you could have something selectet that is no longer present
-  $WPFlistBox.SelectedIndex = -1
+  #Reset selection / otherwise you could have something selected that is no longer present
+  $WPFlistBox.SelectedIndex = - 1
   $global:Product = ""
   $SearchValue = $WPFSearchbox.Text
   Write-Host $SearchValue
@@ -184,6 +200,7 @@ function Search {
   $WPFlistBox.ItemsSource = @(( $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" -and $_ -like "*$global:ReleaseSelection" }))
   
 }
+
 #region XAML Reader
 # where is the XAML file?
 $xamlFile = $path + "\res\MainWindow.xaml"
@@ -210,7 +227,8 @@ $WPFFlyOutContent = $Form.Findname("FlyOutContent")
 # Load XAML Objects In PowerShell
 #===========================================================================
   
-$xaml.SelectNodes("//*[@Name]") | ForEach-Object { "trying item $($_.Name)";
+$xaml.SelectNodes("//*[@Name]") | ForEach-Object {
+  "trying item $($_.Name)";
   try { Set-Variable -Name "WPF$($_.Name)" -Value $Form.FindName($_.Name) -ErrorAction Stop }
   catch { throw }
 }
@@ -243,10 +261,19 @@ $WPFReleaseSelection.IsEnabled = $False
 #Add Product by Hashtable
 $WPFlistBox.ItemsSource = $AutodesProductsHashtable.Keys
 
-#Correct Font Size
-foreach ( $item in $WPFlistBox) { 
-  $item.FontSize = "14"
+#Add Product Key Hashtables together
+$ProductKeyHashtable = $ProductKeysHashtable2015 + $ProductKeysHashtable2016 + $ProductKeysHashtable2017 + $ProductKeysHashtable2018 + $ProductKeysHashtable2019 + $ProductKeysHashtable2020 + $ProductKeysHashtable2021
+$ProductKeyHashtable = $ProductKeyHashtable.GetEnumerator() | Sort-Object Name
+
+$data = @() 
+
+#Add combined Hashtable to DataGrid for Product Key Search
+Foreach ($h in $ProductKeyHashtable.GetEnumerator()) {
+  $data += New-Object PSObject -prop @{Product = $h.Key; Key = $h.Value }
 }
+
+$global:lview = [System.Windows.Data.ListCollectionView]$data
+$WPFProductKeyGrid.ItemsSource = $lview
 
 #Load Config
 Import-Config
@@ -259,7 +286,6 @@ If ($global:ServiceState) {
 }
 else {
   $WPFDesktopService.IsChecked = $false
-  #$WPFServiceDialog.IsOpen = $true
 }
 
 #===========================================================================
@@ -268,10 +294,8 @@ else {
 
 #region Events
 
-
 #Selection Event Change Release Selection
-$WPFReleaseSelection.Add_SelectionChanged(
-  { 
+$WPFReleaseSelection.Add_SelectionChanged( { 
     $global:ReleaseSelection = $WPFReleaseSelection.SelectedItem.Content
     if ($global:ReleaseSelection -eq "2020") {
       $global:productFeaturecode = "2020.0.0.F"
@@ -288,8 +312,7 @@ $WPFReleaseSelection.Add_SelectionChanged(
 )
 
 #Selection Event Change Product
-$WPFlistBox.Add_SelectionChanged(
-  { 
+$WPFlistBox.Add_SelectionChanged( { 
     $SelectedItem = $WPFlistBox.SelectedItem
     Write-Host $SelectedItem
             
@@ -306,8 +329,7 @@ $WPFlistBox.Add_SelectionChanged(
 )
 
 #Selection Event Change License
-$WPFLicense.Add_SelectionChanged(
-  { 
+$WPFLicense.Add_SelectionChanged( { 
           
     if ($WPFLicense.SelectedItem.Content -eq "Network licensing") {
       $WPFServerType.IsEnabled = $true
@@ -339,8 +361,7 @@ $WPFLicense.Add_SelectionChanged(
 )
 
 #Selection Event Change Server Typ
-$WPFServerType.Add_SelectionChanged(
-  { 
+$WPFServerType.Add_SelectionChanged( { 
     if ($WPFServerType.SelectedItem.Content -eq "Single Server") {
       $global:Servertype = "SINGLE"
     }
@@ -377,34 +398,77 @@ $WPFCheckPath.Add_Click( {
   }) 
 
 #Adding code to Print List Button
-$WPFPrintList.Add_Click( {
+$WPFPrintList.Add_Click( { 
     Write-Host "Print List Clicked"
     $jsonString = &"C:\Program Files (x86)\Common Files\Autodesk Shared\AdskLicensing\Current\helper\AdskLicensingInstHelper.exe" list | ConvertFrom-Json | ConvertTo-Json | Out-File ($tempPath + $JsonFileName)
-    Invoke-Item  ($tempPath + $JsonFileName)
-  }) 
+    try {
+      Invoke-Item  ($tempPath + $JsonFileName)
+    }
+    Catch {
+      [System.Windows.MessageBox]::Show('No Programm defined to open .json Files!')
+    }  
+  }
+) 
+
+$WPFPrintList.Add_PreviewMouseUp( {
+    $jsonString = '"C:\Program Files (x86)\Common Files\Autodesk Shared\AdskLicensing\Current\helper\AdskLicensingInstHelper.exe"' + ' list'
+
+    if ($_.ChangedButton -eq 'Right') {
+      Set-Clipboard -Value $jsonString
+      $WPFInfoDialogText.Text = "Command copied to clipboard"
+      $WPFInfoDialog.IsOpen = $true
+    }
+  })
 
 #Adding code to Generate / Copy
 $WPFGenerate.Add_Click( {
     Write-Host "Generate Clicked"
     Generate
+    $WPFInfoDialogText.Text = "Command copied to clipboard"
     $WPFInfoDialog.IsOpen = $true
   }) 
 
+$TimerSearchKeys.add_Tick( {
+    $SearchValueKey = $WPFSearchboxProductKey.Text 
 
+    #Used to search Product or Key only if the intervall is reached
+    $Filter = $lview | Where-Object { $_ -like "*$SearchValueKey*" } 
+    $WPFProductKeyGrid.ItemsSource = @($Filter)
+    $TimerSearchKeys.Stop()
+    Write-Host "Searched"
+  })
 
-$WPFSearchbox.Add_KeyDown( {
-    #Call Search
-    if ($_.Key -eq 'Return') {
-      #Reset selection / otherwise you could have something selectet that is no longer present
-      $WPFlistBox.SelectedIndex = -1
-      $global:Product = ""
-      $SearchValue = $WPFSearchbox.Text
-      $WPFlistBox.ItemsSource = @(( $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" -and $_ -like "*$global:ReleaseSelection" }))
-    }
+$TimerModifyLicenseProduct.add_Tick( {
+    $SearchValue = $WPFSearchbox.Text
+    $global:Product = ""
+
+    #Used to search Product or Key only if the intervall is reached
+    $Filter = $AutodesProductsHashtable.Keys | Where-Object { $_ -like "*$SearchValue*" -and $_ -like "*$global:ReleaseSelection" } 
+    $WPFlistBox.ItemsSource = @($Filter)
+    $TimerModifyLicenseProduct.Stop()
+    Write-Host "Searched"
+  })
+
+$WPFSearchbox.Add_KeyUp( {
+
+    #KeyUp is used to detect Backspace (Clearing SearchBox)
+    $TimerModifyLicenseProduct.Stop()
+    $TimerModifyLicenseProduct.Start()
+ 
+    #Reset selection / otherwise you could have something selected that is no longer present
+    $WPFlistBox.SelectedIndex = - 1
+  })
+  
+$WPFSearchboxProductKey.Add_KeyUp( {
+    #KeyUp is used to detect Backspace (Clearing SearchBox)
+    $TimerSearchKeys.Stop()
+    $TimerSearchKeys.Start()
+
+    #Reset selection / otherwise you could have something selected that is no longer present
+    $WPFProductKeyGrid.SelectedIndex = - 1       
   })
 
 $WPFRunButton.Add_Click( {
-
     if ($WPFlistBox.SelectedItem.Count -lt 1) {
       $ok = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::Affirmative
       [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run", "No Product is selected! Select a Product from list!", $ok)
@@ -493,8 +557,7 @@ $WPFDesktopService.Add_Click( {
     }
   })
 
-$WPFRefreshService.Add_Click(
-  {
+$WPFRefreshService.Add_Click( {
     #Check Desktop Licensing Service Status
     CheckDesktopService "AdskLicensingService"
     #Set State of ToggleSwitch in Flyout menü
@@ -547,6 +610,22 @@ $WPFMUMLogo.Add_MouseLeftButtonUp( {
     start "https://mum.ch"
   })
 
+$WPFProductKeyGrid.Add_PreviewMouseRightButtonUp( {
+
+    Write-Host $WPFProductKeyGrid.SelectedCells[0].Item.Product
+    Set-Clipboard $WPFProductKeyGrid.SelectedCells[0].Item.Product
+    $WPFInfoDialogText.Text = "Product Name copied to clipboard"
+    $WPFInfoDialog.IsOpen = $true
+  })
+
+$WPFProductKeyGrid.Add_PreviewMouseLeftButtonUp( {
+
+    Write-Host $WPFProductKeyGrid.SelectedCells[0].Item.Key
+    Set-Clipboard $WPFProductKeyGrid.SelectedCells[0].Item.Key
+    $WPFInfoDialogText.Text = "Product Key copied to clipboard"
+    $WPFInfoDialog.IsOpen = $true
+  })
+
 #===========================================================================
 # Shows the form
 #===========================================================================
@@ -557,3 +636,6 @@ $WPFMUMLogo.Source = $Path + "\res\MUMLogo.png"
 $WPFStatusBox.Text = "Not Ready / Check Path"
 
 $Form.ShowDialog() | out-null
+
+#Stop Search Timer
+$TimerSearchKeys.Stop()
