@@ -11,6 +11,12 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 > Note: If you want to check out the manual way by autodesk, feel free to use this link: [Autodesk Knowledge](https://knowledge.autodesk.com/search-result/caas/sfdcarticles/sfdcarticles/How-to-change-or-reset-licensing-on-your-Autodesk-software.html)
 
+# Update v1.3
+
+- Sarch Function is more responsive and no longer needs "Enter" input
+- Print List command can be copied
+- New Tab to search for Product name by Product Key or search for Product Key by Product Name
+
 # Tool does not start!
 
 [Have a look here](https://github.com/TWiesendanger/ADSKLincensingModify#tool-doesnt-start)
@@ -18,12 +24,14 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 # Table of Contents
 
 - [ADSKLincensingModify](#adsklincensingmodify)
+- [Update v1.3](#update-v13)
 - [Tool does not start!](#tool-does-not-start)
 - [Table of Contents](#table-of-contents)
 - [Function Demo](#function-demo)
 - [Installation](#installation)
 - [Start](#start)
 - [Print List](#print-list)
+- [Search Product](#search-product)
 - [Select Product](#select-product)
 - [Select License](#select-license)
   - [Network Licensing](#network-licensing)
@@ -32,6 +40,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
   - [Reset](#reset)
 - [Generate / Copy](#generate--copy)
 - [Run](#run)
+- [Search for Product Name or Product Key](#search-for-product-name-or-product-key)
 - [Help](#help)
 - [Settings](#settings)
   - [Dark Theme](#dark-theme)
@@ -92,6 +101,16 @@ Make sure to check the Autodesk Knowledge article:
 | 2     |  Redundant servers  |
 | 3     | Distributed servers |
 
+You can copy the command that is run when the button is clicked. Righclick on it to copy.
+
+![](/docs/adskm_printlist.png)
+
+# Search Product
+
+The search function looks for what is input in the search field. There is a small delay until the search function runs. This keeps the search field responsive.
+
+![](/docs/adskm_searchupdate.png)
+
 # Select Product
 
 On the left you need to select a product that you want to change in any way. This list is based on the official product key list from autodesk. Use the search function to find your product. Press "Enter" after typing.
@@ -141,6 +160,16 @@ If you want to you can also edit the command.
 If you click run it will run the command after asking you one last time. If you then click yes it will run the command.
 
 ![](/docs/adskm_confirmation.png)
+
+# Search for Product Name or Product Key
+
+There is a second tab that allows to search for Product Key or Product Name. The list goes back to 2015. Everything older will not show up.
+
+![](/docs/adskm_searchproductkey.png)
+
+You can copy values by left clicking on it to copy the Product Key. To copy the Product Name use Right click. Make sure to first select the row with left click.
+
+![](/docs/adskm_searchproductkey_part.png)
 
 # Help
 
