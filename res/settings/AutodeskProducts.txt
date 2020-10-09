@@ -129,6 +129,7 @@ PowerShape Standard 2020 = P09L1
 PowerShape Ultimate 2020 = P11L1
 T1 Enterprise Multiflex 2020 = 535L1
 Autodesk Inventor Nesting 2020 = C1QL1
+Autodesk Inventor Nesting 2021 = C1QM1
 Inventor Tolerance Analysis 2020 = C20L1
 Autodesk 3ds Max 2021 = 128M1
 Autodesk Advance Steel 2021 = 959M1
