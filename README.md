@@ -131,9 +131,16 @@ If you use Redundant Server you can type in all servers like this:
 
 ![](/docs/adskm_networklicensing.gif)
 
+If you want to change anything related to Network Licensing it is required to delete a registry Parameter.
+
+Delete the registry key ADSKFLEX_LICENSE_FILE at HKCU\Software\FLEXlm License Manager. This will be done by the tool, but if you just copy the command, make
+sure to include something like this:
+`for /D %a in ("%ProgramData%\Autodesk\AdskLicensingService\*.*") do rd /q /s "%a"`
+
 ## Standalone Licensing
 
 This is used for the old licensing system. Use this only if you are still using an old license with maintenance.
+
 
 ## User Licensing
 
