@@ -475,13 +475,25 @@ $WPFRunButton.Add_Click( {
     }
     else {
       if ($WPFResultBox.Text -ne "") {
+
+
         # OK CANCEL Style
         $okAndCancel = [MahApps.Metro.Controls.Dialogs.MessageDialogStyle]::AffirmativeAndNegative
         # show ok/cancel message
         $result = [MahApps.Metro.Controls.Dialogs.DialogManager]::ShowModalMessageExternal($Form, "Run CMD", "Do you realy want to run this command?", $okAndCancel)
 
         If ($result -eq "Affirmative") { 
-
+          # if it has something to do with network licensing, there is a regkey that has to be deleted (otherwise it will not change servername as example)
+          if ($WPFLicense.SelectedItem.Content -eq "Network licensing") {
+            if (Test-Path -Path "Registry::HKCU\Software\FLEXlm License Manager") {
+              try {
+                Remove-ItemProperty -Path "Registry::HKCU\Software\FLEXlm License Manager" -Name "ADSKFLEX_LICENSE_FILE"
+              }
+              catch {
+                Write-Host "Key not found. Nothing to delete!"
+              }
+            }
+          }
           #Stop ASSO.exe
           $AdSSO = Get-Process -Name "AdSSO" -ErrorAction SilentlyContinue
           if ($AdSSO) {
