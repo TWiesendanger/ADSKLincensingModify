@@ -64,6 +64,9 @@
                             </Image>
                         </Button>
                     </StackPanel>
+                    <Label Tag="Installed Version 1.4" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Bottom">
+                        <TextBlock Margin="5,220,0,0" VerticalAlignment="Bottom">Installed Version 1.4</TextBlock>
+                    </Label>
                 </StackPanel>
 
             </Controls:Flyout>
