@@ -13,7 +13,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 # Update v1.3
 
-- Sarch Function is more responsive and no longer needs "Enter" input
+- Search Function is more responsive and no longer needs "Enter" input
 - Print List command can be copied
 - New Tab to search for Product name by Product Key or search for Product Key by Product Name
 
