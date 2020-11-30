@@ -133,3 +133,4 @@ PowerShape Premium 2021 = P10M1
 PowerShape Standard 2021 = P09M1
 PowerShape Ultimate 2021 = P11M1
 T1 Enterprise Multi-flex 2021 = 535M1
+Autodesk Inventor Nesting 2021 = C1QM1

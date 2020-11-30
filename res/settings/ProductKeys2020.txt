@@ -135,3 +135,4 @@ PowerShape Premium 2020 = P10L1
 PowerShape Standard 2020 = P09L1
 PowerShape Ultimate 2020 = P11L1
 T1 Enterprise Multi-flex 2020 = 535L1
+Autodesk Inventor Nesting 2020 = C1QL1
