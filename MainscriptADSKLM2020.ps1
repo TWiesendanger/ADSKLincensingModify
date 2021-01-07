@@ -494,7 +494,7 @@ $WPFRunButton.Add_Click( {
               }
             }
           }
-          #Stop ASSO.exe
+          #Stop AdSSO.exe
           $AdSSO = Get-Process -Name "AdSSO" -ErrorAction SilentlyContinue
           if ($AdSSO) {
             Stop-Process -InputObject $AdSSO
