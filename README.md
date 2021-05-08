@@ -11,6 +11,12 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 > Note: If you want to check out the manual way by autodesk, feel free to use this link: [Autodesk Knowledge](https://knowledge.autodesk.com/search-result/caas/sfdcarticles/sfdcarticles/How-to-change-or-reset-licensing-on-your-Autodesk-software.html)
 
+# Update v2.0
+
+- added support for 2022 products
+- search product keys 2022*
+
+*product keys are created by changing letter "M" to "N". This might be false.
 # Update v1.3
 
 - Search Function is more responsive and no longer needs "Enter" input
@@ -24,6 +30,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 # Table of Contents
 
 - [ADSKLincensingModify](#adsklincensingmodify)
+- [Update v2.0](#update-v20)
 - [Update v1.3](#update-v13)
 - [Tool does not start!](#tool-does-not-start)
 - [Table of Contents](#table-of-contents)
