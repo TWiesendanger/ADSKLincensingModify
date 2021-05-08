@@ -50,6 +50,8 @@ $ProductKeysHashtable2018 = Get-Content -Raw -Path ($Path + "\res\settings\Produ
 $ProductKeysHashtable2019 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2019.txt") | ConvertFrom-StringData
 $ProductKeysHashtable2020 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2020.txt") | ConvertFrom-StringData
 $ProductKeysHashtable2021 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2021.txt") | ConvertFrom-StringData
+$ProductKeysHashtable2022 = Get-Content -Raw -Path ($Path + "\res\settings\ProductKeys2022.txt") | ConvertFrom-StringData
+
 
 ##############################################################
 #                Functions                                   #
@@ -262,7 +264,7 @@ $WPFReleaseSelection.IsEnabled = $False
 $WPFlistBox.ItemsSource = $AutodesProductsHashtable.Keys
 
 #Add Product Key Hashtables together
-$ProductKeyHashtable = $ProductKeysHashtable2015 + $ProductKeysHashtable2016 + $ProductKeysHashtable2017 + $ProductKeysHashtable2018 + $ProductKeysHashtable2019 + $ProductKeysHashtable2020 + $ProductKeysHashtable2021
+$ProductKeyHashtable = $ProductKeysHashtable2015 + $ProductKeysHashtable2016 + $ProductKeysHashtable2017 + $ProductKeysHashtable2018 + $ProductKeysHashtable2019 + $ProductKeysHashtable2020 + $ProductKeysHashtable2021 + $ProductKeysHashtable2022
 $ProductKeyHashtable = $ProductKeyHashtable.GetEnumerator() | Sort-Object Name
 
 $data = @() 
@@ -300,8 +302,11 @@ $WPFReleaseSelection.Add_SelectionChanged( {
     if ($global:ReleaseSelection -eq "2020") {
       $global:productFeaturecode = "2020.0.0.F"
     }
-    else {
+    elseif ($global:ReleaseSelection -eq "2021") {
       $global:productFeaturecode = "2021.0.0.F"
+    }
+    else {
+      $global:productFeaturecode = "2022.0.0.F"
     }
     Write-Host $global:ReleaseSelection
     Write-Host $global:productFeaturecode
