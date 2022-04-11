@@ -1,2 +1,5 @@
-﻿
-. "H:\OneDrive - Mensch und Maschine - OPEN MIND\TWIProgrammierung\Autodesk\CreateExe\ps2exe.ps1" -inputFile "H:\OneDrive - Mensch und Maschine - OPEN MIND\TWIProgrammierung\Autodesk\ADSKLincensingModifiy\MainscriptADSKLM2020.ps1" -outputFile "H:\OneDrive - Mensch und Maschine - OPEN MIND\TWIProgrammierung\Autodesk\ADSKLincensingModifiy\ADSKLicensingModify.exe" -iconFile "H:\OneDrive - Mensch und Maschine - OPEN MIND\TWIProgrammierung\Autodesk\ADSKLincensingModifiy\res\MuMDefaultIcon.ico" -noConsole -noOutput -title "ADSK Licensing Modify" -copyright "Tobias Wiesendanger" -verbose -version 2.0
+﻿$pathExeCreater = "D:\OneDrive - MuM - OM\TWIProgrammierung\Autodesk\CreateExe\ps2exe.ps1"
+$pathMainScript = "C:\Work\ADSKLincensingModify\MainscriptADSKLM2020.ps1"
+$pathOutput = "C:\Work\ADSKLincensingModify\ADSKLicensingModify.exe"
+$pathIcon = "C:\Work\ADSKLincensingModify\res\MuMDefaultIcon.ico"
+. $pathExeCreater -inputFile $pathMainScript -outputFile $pathOutput -iconFile $pathIcon -noConsole -noOutput -title "ADSK Licensing Modify" -copyright "Tobias Wiesendanger" -verbose -version 2.1
