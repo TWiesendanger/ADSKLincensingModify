@@ -1,7 +1,4 @@
-﻿<Controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Title="ADSK Licensing Modify" TitleCaps="False" Height="615" Width="990" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Topmost="False" RightWindowCommandsOverlayBehavior="Never" GlowBrush="{DynamicResource AccentColorBrush}">
+﻿<Controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Title="ADSK Licensing Modify" TitleCaps="False" Height="615" Width="990" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Topmost="False" RightWindowCommandsOverlayBehavior="Never" GlowBrush="{DynamicResource AccentColorBrush}">
 
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
@@ -12,20 +9,17 @@
 
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
-            <Controls:Flyout
-                x:Name = "FlyOutContent"
-                Position = "Right"
-                AreAnimationsEnabled = "True" Header="Settings" IsModal="True" Width="260">
+            <Controls:Flyout x:Name="FlyOutContent" Position="Right" AreAnimationsEnabled="True" Header="Settings" IsModal="True" Width="260">
                 <StackPanel Orientation="Vertical">
                     <Label Tag="Choose Theme" FontSize="18" FontWeight="Bold">
                         <TextBlock TextDecorations="Underline" Margin="5,0,0,0">Choose Theme</TextBlock>
                     </Label>
-                    <Controls:ToggleSwitch x:Name="ThemeSwitch" OnLabel="DarkTheme" OffLabel="LightTheme" Width="160" Height="45" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    <Controls:ToggleSwitch x:Name="ThemeSwitch" OnLabel="DarkTheme" OffLabel="LightTheme" Width="160" Height="45" HorizontalAlignment="Left" Margin="10,0,0,0" />
                     <Label Tag="Other" FontSize="18" FontWeight="Bold">
                         <TextBlock TextDecorations="Underline" Margin="5,0,0,0">Other</TextBlock>
                     </Label>
-                    <Button x:Name="OpenLoginStatePath" Content="Open LoginStatePath" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Top" Width="180" Height="35" FontSize="16" BorderBrush="White" BorderThickness="1" Controls:ButtonHelper.PreserveTextCase="True"/>
-                    <Button x:Name="OpenAdskLicensingServicePath" Content="Open AdskLicensing Path" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Top" Width="220" Height="35" FontSize="16" BorderBrush="White" BorderThickness="1" Controls:ButtonHelper.PreserveTextCase="True"/>
+                    <Button x:Name="OpenLoginStatePath" Content="Open LoginStatePath" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Top" Width="180" Height="35" FontSize="16" BorderBrush="White" BorderThickness="1" Controls:ButtonHelper.PreserveTextCase="True" />
+                    <Button x:Name="OpenAdskLicensingServicePath" Content="Open AdskLicensing Path" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Top" Width="220" Height="35" FontSize="16" BorderBrush="White" BorderThickness="1" Controls:ButtonHelper.PreserveTextCase="True" />
                     <Label Tag="Service" FontSize="18" FontWeight="Bold">
                         <TextBlock TextDecorations="Underline" Margin="5,0,0,0">Service</TextBlock>
                     </Label>
@@ -34,8 +28,7 @@
                         <Button x:Name="RefreshService" Width="30" Height="30" Margin="0,-10,0,0">
                             <Image Width="15" Height="15">
                                 <Image.Source>
-                                    <DrawingImage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                                    <DrawingImage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                                         <DrawingImage.Drawing>
                                             <GeometryDrawing Brush="White" Geometry="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" />
                                         </DrawingImage.Drawing>
@@ -45,23 +38,17 @@
                         </Button>
                     </StackPanel>
                     <Label Tag="Installed Version 1.4" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Bottom">
-                        <TextBlock Margin="5,220,0,0" VerticalAlignment="Bottom">Installed Version 1.4</TextBlock>
+                        <TextBlock Margin="5,220,0,0" VerticalAlignment="Bottom">Installed Version 2.1</TextBlock>
                     </Label>
                 </StackPanel>
 
             </Controls:Flyout>
-            <Controls:Flyout 
-                x:Name = "InfoDialog"
-                Position = "Bottom"
-                AreAnimationsEnabled = "True" CloseButtonVisibility="Hidden" TitleVisibility="Hidden" IsModal="False" Width="350" Height="50" IsAutoCloseEnabled="True" AutoCloseInterval="3000">
-                <TextBlock x:Name="InfoDialogText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="Copied to clipboard"/>
+            <Controls:Flyout x:Name="InfoDialog" Position="Bottom" AreAnimationsEnabled="True" CloseButtonVisibility="Hidden" TitleVisibility="Hidden" IsModal="False" Width="350" Height="50" IsAutoCloseEnabled="True" AutoCloseInterval="3000">
+                <TextBlock x:Name="InfoDialogText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="Copied to clipboard" />
             </Controls:Flyout>
 
-            <Controls:Flyout 
-                x:Name = "ServiceDialog"
-                Position = "Bottom"
-                AreAnimationsEnabled = "True" CloseButtonVisibility="Hidden" TitleVisibility="Hidden" IsModal="False" Width="450" Height="50" IsAutoCloseEnabled="True" AutoCloseInterval="3000">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="AdskLicensingService is not running!"/>
+            <Controls:Flyout x:Name="ServiceDialog" Position="Bottom" AreAnimationsEnabled="True" CloseButtonVisibility="Hidden" TitleVisibility="Hidden" IsModal="False" Width="450" Height="50" IsAutoCloseEnabled="True" AutoCloseInterval="3000">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="AdskLicensingService is not running!" />
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
@@ -72,8 +59,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -84,44 +71,43 @@
             <Grid Margin="-15,40,0,0">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="445*"/>
-                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="445*" />
+                    <ColumnDefinition Width="47*" />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="CheckPath" Content="Check Path" HorizontalAlignment="Left" Margin="20,-34,0,0" VerticalAlignment="Top" Width="121" Height="45" FontSize="18" Controls:ButtonHelper.PreserveTextCase="True" />
-                <TextBlock x:Name="StatusBox" HorizontalAlignment="Left" Margin="65,463,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Text="&quot;   &quot;"/>
-                <Image x:Name="image" HorizontalAlignment="Left" Height="30" Margin="17,460,0,0" VerticalAlignment="Top" Width="30" Source="icons8_cancel_48px.png"/>
-                <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="264" Margin="20,120,0,0" VerticalAlignment="Top" Width="394" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" FontSize="14">
-                </ListBox>
-                <Button x:Name="PrintList" Content="Print List" HorizontalAlignment="Left" Margin="146,-34,0,0" VerticalAlignment="Top" Width="121" Height="45" FontSize="18" Controls:ButtonHelper.PreserveTextCase="True"/>
+                <TextBlock x:Name="StatusBox" HorizontalAlignment="Left" Margin="65,463,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Text="&quot;   &quot;" />
+                <Image x:Name="image" HorizontalAlignment="Left" Height="30" Margin="17,460,0,0" VerticalAlignment="Top" Width="30" Source="icons8_cancel_48px.png" />
+                <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="264" Margin="20,120,0,0" VerticalAlignment="Top" Width="394" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" FontSize="14"></ListBox>
+                <Button x:Name="PrintList" Content="Print List" HorizontalAlignment="Left" Margin="146,-34,0,0" VerticalAlignment="Top" Width="121" Height="45" FontSize="18" Controls:ButtonHelper.PreserveTextCase="True" />
                 <ListBox x:Name="License" HorizontalAlignment="Left" Height="264" Margin="459,120,0,0" VerticalAlignment="Top" Width="226" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
-                    <ListBoxItem x:Name="NetworkLicensing" Content="Network licensing" FontSize="14"/>
-                    <ListBoxItem Content="Standalone licensing" FontSize="14"/>
-                    <ListBoxItem Content="User Licensing" FontSize="14"/>
-                    <ListBoxItem Content="Reset" FontSize="14"/>
+                    <ListBoxItem x:Name="NetworkLicensing" Content="Network licensing" FontSize="14" />
+                    <ListBoxItem Content="Standalone licensing" FontSize="14" />
+                    <ListBoxItem Content="User Licensing" FontSize="14" />
+                    <ListBoxItem Content="Reset" FontSize="14" />
                 </ListBox>
                 <ListBox x:Name="ServerType" HorizontalAlignment="Left" Height="215" Margin="730,120,0,0" VerticalAlignment="Top" Width="223" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2">
-                    <ListBoxItem Content="Single server" FontSize="14"/>
-                    <ListBoxItem Content="Redundant servers" FontSize="14"/>
-                    <ListBoxItem Content="Distributed servers" FontSize="14"/>
-                    <ListBoxItem x:Name="ResetServer" Content="Reset server" FontSize="14"/>
+                    <ListBoxItem Content="Single server" FontSize="14" />
+                    <ListBoxItem Content="Redundant servers" FontSize="14" />
+                    <ListBoxItem Content="Distributed servers" FontSize="14" />
+                    <ListBoxItem x:Name="ResetServer" Content="Reset server" FontSize="14" />
                 </ListBox>
-                <Button x:Name="Generate" Content="Generate / Copy" HorizontalAlignment="Left" Margin="703,457,0,0" VerticalAlignment="Top" Width="125" Height="35" FontSize="14" Controls:ButtonHelper.PreserveTextCase="True"/>
-                <TextBox x:Name="ServerName" HorizontalAlignment="Left" Height="23" Margin="730,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="Searchbox" HorizontalAlignment="Left" Height="34" Margin="20,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Controls:TextBoxHelper.ClearTextButton="False" Text="{Binding Text}"/>
-                <Label x:Name="Search" Content="Search" HorizontalAlignment="Left" Margin="17,26,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-                <Label x:Name="ProductLabel" Content="Product" HorizontalAlignment="Left" Margin="17,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-                <Label x:Name="LicenseLabel" Content="License" HorizontalAlignment="Left" Margin="457,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-                <Label x:Name="ServertypeLabel" Content="Servertype" HorizontalAlignment="Left" Margin="729,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-                <Label x:Name="ServerNameLabel" Content="Server Name (@127.0.0.1,@192.168.1.1)" HorizontalAlignment="Left" Margin="729,340,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="10" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="ResultBox" HorizontalAlignment="Left" Height="42" Margin="20,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="933" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2"/>
-                <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="835,457,0,0" VerticalAlignment="Top" Width="118" Height="35" FontSize="14" Controls:ButtonHelper.PreserveTextCase="True" Grid.ColumnSpan="2"/>
-                <Image x:Name="MUMLogo" Margin="600,-60,31,502" Source="MUMLogo.jpg" Grid.ColumnSpan="2" Height="50" Width="350"/>
+                <Button x:Name="Generate" Content="Generate / Copy" HorizontalAlignment="Left" Margin="703,457,0,0" VerticalAlignment="Top" Width="125" Height="35" FontSize="14" Controls:ButtonHelper.PreserveTextCase="True" />
+                <TextBox x:Name="ServerName" HorizontalAlignment="Left" Height="23" Margin="730,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="Searchbox" HorizontalAlignment="Left" Height="34" Margin="20,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Controls:TextBoxHelper.ClearTextButton="False" Text="{Binding Text}" />
+                <Label x:Name="Search" Content="Search" HorizontalAlignment="Left" Margin="17,26,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" />
+                <Label x:Name="ProductLabel" Content="Product" HorizontalAlignment="Left" Margin="17,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" />
+                <Label x:Name="LicenseLabel" Content="License" HorizontalAlignment="Left" Margin="457,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" />
+                <Label x:Name="ServertypeLabel" Content="Servertype" HorizontalAlignment="Left" Margin="729,92,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" />
+                <Label x:Name="ServerNameLabel" Content="Server Name (@127.0.0.1,@192.168.1.1)" HorizontalAlignment="Left" Margin="729,340,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="10" Grid.ColumnSpan="2" />
+                <TextBox x:Name="ResultBox" HorizontalAlignment="Left" Height="42" Margin="20,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="933" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Grid.ColumnSpan="2" />
+                <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="835,457,0,0" VerticalAlignment="Top" Width="118" Height="35" FontSize="14" Controls:ButtonHelper.PreserveTextCase="True" Grid.ColumnSpan="2" />
+                <Image x:Name="MUMLogo" Margin="600,-60,31,502" Source="MUMLogo.jpg" Grid.ColumnSpan="2" Height="50" Width="350" />
                 <ComboBox x:Name="ReleaseSelection" HorizontalAlignment="Left" Margin="342,22,0,0" VerticalAlignment="Top" Width="72" SelectedIndex="0" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}">
-                    <ComboBoxItem Content="2020"/>
-                    <ComboBoxItem Content="2021"/>
-                    <ComboBoxItem Content="2022"/>
+                    <ComboBoxItem Content="2020" />
+                    <ComboBoxItem Content="2021" />
+                    <ComboBoxItem Content="2022" />
+                    <ComboBoxItem Content="2023" />
                 </ComboBox>
-
             </Grid>
         </Controls:MetroTabItem>
         <Controls:MetroTabItem Header="Lookup Product Key">
@@ -131,20 +117,20 @@
                     <ColumnDefinition Width="0.5*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="34"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="34" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label x:Name="SearchProductKey" Grid.Row="1" Content="Search Product" FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
-                <TextBox x:Name="SearchboxProductKey" Grid.Row="2" HorizontalAlignment="Stretch" Height="34" TextWrapping="Wrap" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Controls:TextBoxHelper.ClearTextButton="False" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="SearchProductKey" Grid.Row="1" Content="Search Product" FontSize="18" FontWeight="Bold" Margin="0,0,0,5" />
+                <TextBox x:Name="SearchboxProductKey" Grid.Row="2" HorizontalAlignment="Stretch" Height="34" TextWrapping="Wrap" FontSize="14" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Controls:TextBoxHelper.ClearTextButton="False" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGrid Name="ProductKeyGrid" Grid.Row="3" IsReadOnly="True" CanUserSortColumns="False" CanUserResizeColumns="False" Margin="0,10,0,0" AlternationCount="2" FontSize="14" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
                                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                    <Setter Property="Margin" Value="0,2,0,0"/>
-                                    <Setter Property="Background" Value="#2E5C99"/>
+                                    <Setter Property="Margin" Value="0,2,0,0" />
+                                    <Setter Property="Background" Value="#2E5C99" />
                                     <Setter Property="Foreground" Value="White" />
                                 </Trigger>
                                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
@@ -152,8 +138,8 @@
                                     <Setter Property="Foreground" Value="Black" />
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="#5287CC"/>
-                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Background" Value="#5287CC" />
+                                    <Setter Property="Foreground" Value="Black" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
