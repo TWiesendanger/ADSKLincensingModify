@@ -11,6 +11,10 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 
 > Note: If you want to check out the manual way by autodesk, feel free to use this link: [Autodesk Knowledge](https://knowledge.autodesk.com/search-result/caas/sfdcarticles/sfdcarticles/How-to-change-or-reset-licensing-on-your-Autodesk-software.html)
 
+# Update v2.1
+
+- added support for 2023 products
+
 # Update v2.0
 
 - added support for 2022 products
@@ -30,6 +34,7 @@ ADSKLicensingModify is a GUI for this exe and makes this task easy.
 # Table of Contents
 
 - [ADSKLincensingModify](#adsklincensingmodify)
+- [Update v2.1](#update-v21)
 - [Update v2.0](#update-v20)
 - [Update v1.3](#update-v13)
 - [Tool does not start!](#tool-does-not-start)
