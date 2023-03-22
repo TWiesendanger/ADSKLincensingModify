@@ -1,5 +1,8 @@
 # ADSKLincensingModify
 
+> Warning: This repository is no longer maintained. Make sure to use the newer version found here:
+> [Link](https://github.com/TWiesendanger/AdskLicensingModifierWinUi3)
+
 Modifies License Information for Autodesk Products 2020+
 
 If you ever had the challenge to switch the licensing typ of a Autodesk product that does no longer start, then you know exactly why this tool saves a lot of time.
